@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: 1px;
     font-family: 'roc-grotesk', 'Pretendard', sans-serif;
     
-    color: white;
+    color: #222;
 
     -webkit-touch-callout: none;
      user-select: none;
@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body{
-    background-color: #141414;
+    background-color: #f2f2f2;
   }
 
   /* HTML5 hidden-attribute fix for newer browsers */

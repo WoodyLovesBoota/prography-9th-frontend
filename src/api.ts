@@ -11,12 +11,14 @@ export const getFoods = async (keyword: string) => {
 };
 
 export interface ICategories {
-  categories: {
-    idCategory: string;
-    strCategory: string;
-    strCategoryThumb: string;
-    strCategoryDescription: string;
-  }[];
+  categories: ICategory[];
+}
+
+export interface ICategory {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
 }
 
 export interface IMeals {
