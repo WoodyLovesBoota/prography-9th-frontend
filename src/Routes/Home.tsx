@@ -5,13 +5,18 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CategoryList from "../Components/CategoryList";
 import MealsContainer from "../Components/MealsContainer";
+import { useRecoilState } from "recoil";
+import { gridState } from "../atoms";
 
 const Home = () => {
   const [sortedCate, setSortedCate] = useState<ICategory[]>();
   const [foods, setFoods] = useState<string[]>();
 
+  const [grid, setGrid] = useRecoilState(gridState);
+
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("category");
+  const filterOption = new URLSearchParams(location.search).get("filter");
 
   const { data, isLoading } = useQuery<ICategories>(["categories", "cate"], () => getCategories());
 
@@ -34,6 +39,7 @@ const Home = () => {
       ) : (
         <Container>
           <CategoryList list={sortedCate} />
+          {/* <ToggleList></ToggleList> */}
           {foods && <MealsContainer cateList={foods} />}
         </Container>
       )}
@@ -53,5 +59,8 @@ const Wrapper = styled.div`
 const Loader = styled.div``;
 
 const Container = styled.div`
-  width: 1080px;
+  width: 1440px;
+  @media screen and (max-width: 1600px) {
+    width: 90vw;
+  }
 `;

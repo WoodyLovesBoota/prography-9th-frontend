@@ -9,3 +9,8 @@ export const selectedCategoryState = atom<string[]>({
   key: "SelectedCategory",
   default: [],
 });
+
+export const gridState = atom<number>({
+  key: "gridNumberState",
+  default: 4,
+});

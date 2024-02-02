@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { IMeal } from "../api";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const MealCard = ({ meal }: IMealCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,13 +31,14 @@ const MealCard = ({ meal }: IMealCardProps) => {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {isLoaded ? (
-        <img src={meal.strMealThumb} alt={"이미지"} ref={imgRef} />
+        <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <Image src={meal.strMealThumb} alt={"이미지"} ref={imgRef} />
+          <Title>{meal.strMeal}</Title>
+        </Container>
       ) : (
-        <div ref={imgRef} style={{ height: "200px", background: "lightgray" }}>
-          Loading...
-        </div>
+        <LazyLoader ref={imgRef}>Loading...</LazyLoader>
       )}
     </Wrapper>
   );
@@ -44,7 +46,31 @@ const MealCard = ({ meal }: IMealCardProps) => {
 
 export default MealCard;
 
-const Wrapper = styled.div``;
+const Wrapper = styled(motion.div)`
+  /* width: 10vw;
+  width: calc(1080px / 4 - 48px); */
+`;
+
+const Container = styled(motion.div)`
+  width: 100%;
+`;
+
+const Image = styled.img`
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+`;
+
+const Title = styled.h2`
+  font-size: 18px;
+  font-weight: 400;
+`;
+
+const LazyLoader = styled.div`
+  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+`;
 
 interface IMealCardProps {
   meal: IMeal;
