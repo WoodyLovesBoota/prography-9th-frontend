@@ -42,7 +42,7 @@ export default CategoryList;
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 `;
 
 const CategoryContent = styled.h2<{ selected: string }>`

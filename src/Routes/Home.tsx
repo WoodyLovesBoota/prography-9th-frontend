@@ -13,8 +13,6 @@ const Home = () => {
   const [sortedCate, setSortedCate] = useState<ICategory[]>();
   const [foods, setFoods] = useState<string[]>();
 
-  const [grid, setGrid] = useRecoilState(gridState);
-
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("category");
   const filterOption = new URLSearchParams(location.search).get("filter");
