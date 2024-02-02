@@ -24,10 +24,11 @@ const CategoryList = ({ list }: ICategoryListProps) => {
 
   return (
     <Wrapper>
-      {list.map((cate) => (
+      {list.map((cate, ind) => (
         <CategoryContent
+          key={ind}
           onClick={() => handleCategoryClick(cate.strCategory)}
-          isSelected={selectedCate.includes(cate.strCategory).toString()}
+          selected={selectedCate.includes(cate.strCategory) ? "true" : "false"}
         >
           {cate.strCategory}
         </CategoryContent>
@@ -44,16 +45,16 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-const CategoryContent = styled.h2<{ isSelected: string }>`
+const CategoryContent = styled.h2<{ selected: string }>`
   border: 1px solid #222;
   padding: 7px 20px;
   border-radius: 50px;
   font-size: 18px;
   cursor: pointer;
-  background-color: ${(props) => (props.isSelected === "true" ? props.theme.accent + "cc" : "transparent")};
+  background-color: ${(props) => (props.selected === "true" ? props.theme.accent + "cc" : "transparent")};
   font-weight: 400;
-  color: ${(props) => (props.isSelected === "true" ? "white" : "#222")};
-  border: 1px solid ${(props) => (props.isSelected === "true" ? "transparent" : "#222")};
+  color: ${(props) => (props.selected === "true" ? "white" : "#222")};
+  border: 1px solid ${(props) => (props.selected === "true" ? "transparent" : "#222")};
   &:hover {
     background-color: ${(props) => props.theme.accent + "66"};
     border: 1px solid transparent;

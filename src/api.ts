@@ -14,6 +14,10 @@ export interface ICategories {
   categories: ICategory[];
 }
 
+export interface IMeals {
+  meals: IMeal[];
+}
+
 export interface ICategory {
   idCategory: string;
   strCategory: string;
@@ -21,10 +25,8 @@ export interface ICategory {
   strCategoryDescription: string;
 }
 
-export interface IMeals {
-  meals: {
-    strMeal: string;
-    strMealThumb: string;
-    idMeal: string;
-  }[];
+export interface IMeal {
+  strMeal: string;
+  strMealThumb: string;
+  idMeal: string;
 }

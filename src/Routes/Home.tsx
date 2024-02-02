@@ -2,14 +2,18 @@ import styled from "styled-components";
 import { ICategories, ICategory, IMeals, getCategories, getFoods } from "../api";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CategoryList from "../Components/CategoryList";
+import MealsContainer from "../Components/MealsContainer";
 
 const Home = () => {
   const [sortedCate, setSortedCate] = useState<ICategory[]>();
+  const [foods, setFoods] = useState<string[]>();
+
+  const location = useLocation();
+  const keyword = new URLSearchParams(location.search).get("category");
 
   const { data, isLoading } = useQuery<ICategories>(["categories", "cate"], () => getCategories());
-  // const { data, isLoading } = useQuery<IMeals>(["categories", "cate"], () => getFoods("Seafood"));
 
   useEffect(() => {
     if (data) {
@@ -19,6 +23,10 @@ const Home = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    setFoods(keyword?.split(","));
+  }, [keyword]);
+
   return (
     <Wrapper>
       {isLoading || !sortedCate ? (
@@ -26,6 +34,7 @@ const Home = () => {
       ) : (
         <Container>
           <CategoryList list={sortedCate} />
+          {foods && <MealsContainer cateList={foods} />}
         </Container>
       )}
     </Wrapper>
