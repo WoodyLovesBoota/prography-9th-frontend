@@ -7,6 +7,7 @@ import CategoryList from "../Components/CategoryList";
 import MealsContainer from "../Components/MealsContainer";
 import { useRecoilState } from "recoil";
 import { gridState } from "../atoms";
+import ToggleList from "../Components/ToggleList";
 
 const Home = () => {
   const [sortedCate, setSortedCate] = useState<ICategory[]>();
@@ -39,7 +40,7 @@ const Home = () => {
       ) : (
         <Container>
           <CategoryList list={sortedCate} />
-          {/* <ToggleList></ToggleList> */}
+          <ToggleList />
           {foods && <MealsContainer cateList={foods} />}
         </Container>
       )}
