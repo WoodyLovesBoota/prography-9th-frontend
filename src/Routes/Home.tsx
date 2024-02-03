@@ -31,6 +31,9 @@ const Home = () => {
 
   return (
     <Wrapper>
+      <Header>
+        <Logo src="./logo.png" />
+      </Header>
       {isLoading || !sortedCate ? (
         <Loader></Loader>
       ) : (
@@ -50,8 +53,22 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 200px 0;
+  padding: 150px 0;
 `;
+
+const Header = styled.header`
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  padding: 10px 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5.9px);
+`;
+
+const Logo = styled.img``;
 
 const Loader = styled.div``;
 
