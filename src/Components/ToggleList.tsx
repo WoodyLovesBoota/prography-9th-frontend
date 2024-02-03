@@ -32,18 +32,20 @@ const ToggleList = () => {
   const onFilterClick = (filter: string) => {
     setFilter(filter);
     setIsFilterOpen(false);
-    navigate(`/?filter=${filter}`);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("filter", filter);
+    navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true });
   };
 
   useEffect(() => {
-    setFilter(filterOption || "new");
+    setFilter(filterOption || "default");
   }, [filterOption]);
 
   return (
     <Wrapper>
       <Toggle>
         <ToggleTitle onClick={onFilterToggleClick}>
-          {filter === "new" ? "최신 순" : filter === "asc" ? "오름차순" : "내림차순"}
+          {filter === "default" ? "정렬 방식" : filter === "new" ? "최신 순" : filter === "asc" ? "오름차순" : "내림차순"}
         </ToggleTitle>
         {isFilterOpen &&
           (filter === "new" ? (
@@ -56,10 +58,16 @@ const ToggleList = () => {
               <HiddenTitle onClick={() => onFilterClick("desc")}>내림차순</HiddenTitle>
               <HiddenTitle onClick={() => onFilterClick("new")}>최신 순</HiddenTitle>
             </Hidden>
+          ) : filter === "desc" ? (
+            <Hidden initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <HiddenTitle onClick={() => onFilterClick("new")}>최신 순</HiddenTitle>
+              <HiddenTitle onClick={() => onFilterClick("asc")}>오름차순</HiddenTitle>
+            </Hidden>
           ) : (
             <Hidden initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <HiddenTitle onClick={() => onFilterClick("new")}>최신 순</HiddenTitle>
               <HiddenTitle onClick={() => onFilterClick("asc")}>오름차순</HiddenTitle>
+              <HiddenTitle onClick={() => onFilterClick("desc")}>내림차순</HiddenTitle>
             </Hidden>
           ))}
       </Toggle>

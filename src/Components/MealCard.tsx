@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IMeal } from "../api";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const MealCard = ({ meal }: IMealCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);

@@ -17,5 +17,5 @@ export const gridState = atom<number>({
 
 export const filterState = atom<string>({
   key: "filterState",
-  default: "new",
+  default: "default",
 });

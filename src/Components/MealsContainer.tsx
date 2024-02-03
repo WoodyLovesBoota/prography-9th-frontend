@@ -5,10 +5,14 @@ import { useEffect, useState } from "react";
 import MealCard from "./MealCard";
 import { useRecoilState } from "recoil";
 import { gridState } from "../atoms";
+import { useLocation } from "react-router-dom";
 
 const MealsContainer = ({ cateList }: IMealsContainerProps) => {
   const [meal, setMeal] = useState<IMeal[]>();
   const [grid, setGrid] = useRecoilState(gridState);
+
+  const location = useLocation();
+  const filterOption = new URLSearchParams(location.search).get("filter");
 
   const mealQueries = useQueries<IMeals[]>(
     cateList.map((cate) => {
@@ -28,9 +32,23 @@ const MealsContainer = ({ cateList }: IMealsContainerProps) => {
         return mealData ? mealData["meals"] : [];
       });
 
-      setMeal(meals.flat());
+      if (filterOption === "new") {
+        const temp = meals.flat();
+        temp.sort((a, b) => Number(b.idMeal) - Number(a.idMeal));
+        setMeal(temp);
+      } else if (filterOption === "asc") {
+        const temp = meals.flat();
+        temp.sort((a, b) => a.strMeal.localeCompare(b.strMeal));
+        setMeal(temp);
+      } else if (filterOption === "desc") {
+        const temp = meals.flat();
+        temp.sort((a, b) => b.strMeal.localeCompare(a.strMeal));
+        setMeal(temp);
+      } else {
+        setMeal(meals.flat());
+      }
     }
-  }, [isAllLoaded, cateList, cateList.length]);
+  }, [isAllLoaded, cateList, cateList.length, filterOption]);
 
   return (
     <Wrapper>

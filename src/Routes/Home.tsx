@@ -15,7 +15,6 @@ const Home = () => {
 
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("category");
-  const filterOption = new URLSearchParams(location.search).get("filter");
 
   const { data, isLoading } = useQuery<ICategories>(["categories", "cate"], () => getCategories());
 
