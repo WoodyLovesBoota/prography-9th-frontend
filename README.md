@@ -1,5 +1,17 @@
 # 프로그라피 9기 사전과제
 
+## 실행
+
+```shell
+cd prography-9th-frontend
+```
+```shell
+npm i
+```
+```shell
+npm start
+```
+
 ## 기술 스택
 
 React, Typescript <br />
@@ -19,8 +31,6 @@ useLocation / URLSearchParams를 이용하여 클릭 시 쿼리를 제어하였�
 ### 음식 화면
 
 URLSearchParams를 통해 유효한 카테고리에 포함된 모든 음식을 가져와 나타내었다. 
-
-<br />
 
 **- 768px 이하 (모바일)** <br />
 한줄에 한개의 음식 : flex 레이아웃 통해 구현
