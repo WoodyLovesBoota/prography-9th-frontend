@@ -71,7 +71,7 @@ const ToggleList = () => {
             </Hidden>
           ))}
       </Toggle>
-      <Toggle>
+      <GridToggle>
         <ToggleTitle onClick={onGridToggleClick}>{grid}개씩 보기</ToggleTitle>
         {isGridOpen &&
           (grid === 4 ? (
@@ -83,7 +83,7 @@ const ToggleList = () => {
               <HiddenTitle onClick={() => onGridClick(4)}>4개씩 보기</HiddenTitle>
             </Hidden>
           ))}
-      </Toggle>
+      </GridToggle>
     </Wrapper>
   );
 };
@@ -93,6 +93,7 @@ export default ToggleList;
 const Wrapper = styled.div`
   display: flex;
   margin: 50px 0;
+  margin-bottom: 100px;
   justify-content: flex-end;
 `;
 
@@ -100,6 +101,15 @@ const Toggle = styled.div`
   cursor: pointer;
   position: relative;
   width: 100px;
+`;
+
+const GridToggle = styled.div`
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ToggleTitle = styled.h2`

@@ -68,6 +68,9 @@ const CategoryContent = styled.h2<{ selected: Boolean }>`
     border: 1px solid transparent;
   }
   transition: all 0.1s ease-in-out;
+  @media screen and (max-width: 1600px) {
+    font-size: 16px;
+  }
 `;
 
 interface ICategoryListProps {

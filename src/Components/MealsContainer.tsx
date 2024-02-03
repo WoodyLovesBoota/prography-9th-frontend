@@ -88,6 +88,11 @@ const FoodList = styled.div<{ grid: number }>`
   grid-template-columns: ${(props) => (props.grid === 4 ? "repeat(4, 1fr)" : "repeat(2, 1fr)")};
   grid-gap: ${(props) => (props.grid === 4 ? "10px" : "16px")};
   justify-content: space-between;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const MoreButton = styled.button`

@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { ICategories, ICategory, IMeals, getCategories, getFoods } from "../api";
+import { ICategories, ICategory, getCategories } from "../api";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CategoryList from "../Components/CategoryList";
 import MealsContainer from "../Components/MealsContainer";
-import { useRecoilState } from "recoil";
-import { gridState } from "../atoms";
+
 import ToggleList from "../Components/ToggleList";
 
 const Home = () => {
