@@ -47,10 +47,7 @@ const MealCard = ({ meal }: IMealCardProps) => {
 
 export default MealCard;
 
-const Wrapper = styled(motion.div)`
-  /* width: 10vw;
-  width: calc(1080px / 4 - 48px); */
-`;
+const Wrapper = styled(motion.div)``;
 
 const Container = styled(motion.div)`
   width: 100%;

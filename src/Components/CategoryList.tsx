@@ -12,7 +12,6 @@ const CategoryList = ({ list }: ICategoryListProps) => {
   const keyword = new URLSearchParams(location.search).get("category");
 
   const handleCategoryClick = (cate: string) => {
-    console.log(keyword);
     if (selectedCate.includes(cate))
       setSelectedCate((prev) => {
         let index = prev.findIndex((e) => e === cate);
@@ -23,7 +22,7 @@ const CategoryList = ({ list }: ICategoryListProps) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    selectedCate.length > 0 && searchParams.set("category", selectedCate.join(","));
+    selectedCate.length > 0 ? searchParams.set("category", selectedCate.join(",")) : searchParams.delete("category");
     navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true });
   }, [selectedCate]);
 

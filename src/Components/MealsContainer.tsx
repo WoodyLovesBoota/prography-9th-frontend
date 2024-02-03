@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 
 const MealsContainer = ({ cateList }: IMealsContainerProps) => {
   const [meal, setMeal] = useState<IMeal[]>();
+  const [isMore, setIsMore] = useState(false);
   const [grid, setGrid] = useRecoilState(gridState);
 
   const location = useLocation();
@@ -52,7 +53,24 @@ const MealsContainer = ({ cateList }: IMealsContainerProps) => {
 
   return (
     <Wrapper>
-      <FoodList grid={grid}>{meal && meal.map((singleMeal) => <MealCard key={singleMeal.idMeal} meal={singleMeal} />)}</FoodList>
+      {
+        <>
+          <FoodList grid={grid}>
+            {meal && meal.slice(0, 20).map((singleMeal) => <MealCard key={singleMeal.idMeal} meal={singleMeal} />)}
+
+            {isMore && meal?.slice(20).map((singleMeal) => <MealCard key={singleMeal.idMeal} meal={singleMeal} />)}
+          </FoodList>
+          {!isMore && (
+            <MoreButton
+              onClick={() => {
+                setIsMore(true);
+              }}
+            >
+              더보기
+            </MoreButton>
+          )}
+        </>
+      }
     </Wrapper>
   );
 };
@@ -61,13 +79,30 @@ export default MealsContainer;
 
 const Wrapper = styled.div`
   margin-top: 50px;
+  width: 100%;
 `;
 
 const FoodList = styled.div<{ grid: number }>`
+  width: 100%;
   display: grid;
   grid-template-columns: ${(props) => (props.grid === 4 ? "repeat(4, 1fr)" : "repeat(2, 1fr)")};
   grid-gap: ${(props) => (props.grid === 4 ? "10px" : "16px")};
   justify-content: space-between;
+`;
+
+const MoreButton = styled.button`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 30px;
+  background: transparent;
+  margin-top: 50px;
+  &:hover {
+    background: linear-gradient(to bottom, transparent, #fb255422);
+  }
 `;
 
 interface IMealsContainerProps {
