@@ -37,7 +37,14 @@ const MealCard = ({ meal }: IMealCardProps) => {
     <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {isLoaded ? (
         <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Image src={meal.strMealThumb} alt={"이미지"} ref={imgRef} animate={{ y: 0 }} whileHover={{ y: -10 }} />
+          <Image
+            src={meal.strMealThumb}
+            alt={"이미지"}
+            ref={imgRef}
+            animate={{ y: 0 }}
+            whileHover={{ y: -10 }}
+            onClick={() => console.log(meal)}
+          />
           <Title>{meal.strMeal}</Title>
         </Container>
       ) : (

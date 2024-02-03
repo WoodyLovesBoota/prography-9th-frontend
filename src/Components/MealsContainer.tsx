@@ -39,11 +39,11 @@ const MealsContainer = ({ cateList }: IMealsContainerProps) => {
         setMeal(temp);
       } else if (filterOption === "asc") {
         const temp = meals.flat();
-        temp.sort((a, b) => a.strMeal.localeCompare(b.strMeal));
+        temp.sort((a, b) => a.strMeal.trim().localeCompare(b.strMeal.trim()));
         setMeal(temp);
       } else if (filterOption === "desc") {
         const temp = meals.flat();
-        temp.sort((a, b) => b.strMeal.localeCompare(a.strMeal));
+        temp.sort((a, b) => b.strMeal.trim().localeCompare(a.strMeal.trim()));
         setMeal(temp);
       } else {
         setMeal(meals.flat());
@@ -57,7 +57,6 @@ const MealsContainer = ({ cateList }: IMealsContainerProps) => {
         <>
           <FoodList grid={grid}>
             {meal && meal.slice(0, 20).map((singleMeal) => <MealCard key={singleMeal.idMeal} meal={singleMeal} />)}
-
             {isMore && meal?.slice(20).map((singleMeal) => <MealCard key={singleMeal.idMeal} meal={singleMeal} />)}
           </FoodList>
           {!isMore && (

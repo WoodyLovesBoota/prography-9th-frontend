@@ -120,6 +120,7 @@ const ToggleTitle = styled.h2`
 
 const Hidden = styled(motion.div)`
   position: absolute;
+  top: 30px;
 `;
 
 const HiddenTitle = styled.h2`
