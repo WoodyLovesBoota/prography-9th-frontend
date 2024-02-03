@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ICategory } from "../api";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { selectedCategoryState } from "../atoms";

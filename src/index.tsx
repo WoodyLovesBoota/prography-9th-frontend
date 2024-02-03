@@ -36,9 +36,6 @@ const GlobalStyle = createGlobalStyle`
      -ms-user-select: none;
      -webkit-user-select: none;
 
-    @media screen and (max-width: 1000px) {
-      font-size: 12px;
-    }
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,

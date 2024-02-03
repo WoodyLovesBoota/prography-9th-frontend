@@ -1,16 +1,17 @@
-import { useQueries, useQuery } from "react-query";
+import { useQueries } from "react-query";
 import styled from "styled-components";
 import { IMeal, IMeals, getFoods } from "../api";
 import { useEffect, useState } from "react";
 import MealCard from "./MealCard";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { gridState } from "../atoms";
 import { useLocation } from "react-router-dom";
 
 const MealsContainer = ({ cateList }: IMealsContainerProps) => {
   const [meal, setMeal] = useState<IMeal[]>();
   const [isMore, setIsMore] = useState(false);
-  const [grid, setGrid] = useRecoilState(gridState);
+
+  const grid = useRecoilValue(gridState);
 
   const location = useLocation();
   const filterOption = new URLSearchParams(location.search).get("filter");

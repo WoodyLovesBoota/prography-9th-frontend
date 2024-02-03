@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { IMeal } from "../api";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { gridState } from "../atoms";
 
 const MealCard = ({ meal }: IMealCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
-  const [grid, setGrid] = useRecoilState(gridState);
+  const grid = useRecoilValue(gridState);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,14 +37,7 @@ const MealCard = ({ meal }: IMealCardProps) => {
     <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {isLoaded ? (
         <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Image
-            src={meal.strMealThumb}
-            alt={"이미지"}
-            ref={imgRef}
-            animate={{ y: 0 }}
-            whileHover={{ y: -10 }}
-            onClick={() => console.log(meal)}
-          />
+          <Image src={meal.strMealThumb} alt={"이미지"} ref={imgRef} animate={{ y: 0 }} whileHover={{ y: -10 }} />
           <Title>{meal.strMeal}</Title>
         </Container>
       ) : (
